@@ -1,10 +1,10 @@
-# texts-comparator
+# Texts Comparator
 <p align="center">
-  <img src='./images/logo.png' width=300>
+  <img src='../images/logo.png' width=300>
 </p>
 
 <p align="center">
-    【English | <a href="doc/README-Chinese.md">Chinese</a> | <a href="doc/README-Japanese.md">Japanese</a>】
+    【English | <a href="../doc/README-Chinese.md">Chinese</a> | <a href="../doc/README-Japanese.md">Japanese</a>】
 </p>
 
 ## 📖 Overview

@@ -1,0 +1,8 @@
+__title__ = "texts-comparator"
+__version__ = "1.0.0"
+__description__ = "This tool is used for text comparison. It allows you to quickly identify the differences between two sets of similar texts, helping you to complete your tasks easily and efficiently."
+__author__ = "Vint Lin"
+__author_email__ = "vintonlin@gmail.com"
+__url__ = "https://github.com/VintLin/texts-comparator"
+__license__ = "MIT license"
+__copyright__ = "Copyright 2024 Vint Lin"
