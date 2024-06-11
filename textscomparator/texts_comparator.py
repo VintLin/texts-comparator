@@ -1,12 +1,11 @@
-import os
-import json
-from datetime import datetime
 from textscomparator._utils_for_char import CharInfo
 from textscomparator._utils_for_string import StringUtils
+from textscomparator._utils_for_file import FileUtils
 
-def compare_and_save_texts(a_texts, b_texts, save_folder):
+def compare_and_save(a_texts, b_texts, save_folder):
     data = compare_texts(a_texts, b_texts)
-    save_data(data, save_folder)
+    FileUtils.save_to_json(data, save_folder)
+    FileUtils.save_to_execel(data, save_folder)
 
 def compare_texts(a_texts, b_texts):
     # 1. find matches
@@ -58,7 +57,7 @@ def compare_texts(a_texts, b_texts):
             "left": {
                 "text": new_a_info.lines[a_line_index], 
                 "red_marks": new_a_info.get_diff_indexs(a_line_index), 
-                "tag": f"Page {a_line_index + 1}"
+                "tag": f"Index {a_line_index + 1}"
             }, 
             "right": []
         }
@@ -66,17 +65,8 @@ def compare_texts(a_texts, b_texts):
             b_marks = {
                 "text": new_b_info.lines[b_line_index], 
                 "red_marks": new_b_info.get_diff_indexs(b_line_index),
-                "tag": f"Page {b_line_index + 1}"
+                "tag": f"Index {b_line_index + 1}"
             }
             result_map[a_line_index]["right"].append(b_marks)
     return result_map
 
-def save_data(data, save_folder):
-    current_time = datetime.now()
-    
-    formatted_timestamp = current_time.strftime("%Y%m%d")
-    
-    if not os.path.exists(save_folder):
-        os.makedirs(save_folder)
-    with open(os.path.join(save_folder, f"CompareResult_{formatted_timestamp}.json"), 'w', encoding='utf-8') as json_file:
-        json.dump(data, json_file)

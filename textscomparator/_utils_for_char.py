@@ -43,9 +43,8 @@ class CharInfo:
     def get_char_count(self, line_index):
         return len(self.match_lines[line_index])
     
-    def get_match_count(self, line_index):
-        same_indexs = [state for state in self.match_lines[line_index] if state == CharInfo.STATE_SAME]
-        return len(same_indexs)
-    
     def get_diff_indexs(self, line_index):
-        return [index for index, char in enumerate(self.match_lines[line_index]) if char == CharInfo.STATE_DIFF]
+        return [index for index, char in enumerate(self.match_lines[line_index]) if char == CharInfo.STATE_DIFF and self._fliter_char(self.lines[line_index][index])]
+    
+    def _fliter_char(self, char):
+        return char != "\n" and char != "\t" and char != " "
