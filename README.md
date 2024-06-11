@@ -61,13 +61,13 @@ Output as `JSON`:
   </tr>
   <tr>
     <td rowspan="3">Let me not to the marriage of true minds<br>Admit impediments. Love is not love<br>Which alters when it alteration finds,<br>Or bends with the remover to remove:<br>O, no! it is an ever-fix`ed mark,<br>That looks on tempests and is never shaken;<br>It is the star to every wand'ring bark,<br>Whose worth's unknown, although his heighth be taken.<br>Love's not Time's fool, though rosy lips and cheeks<br>Within his bending sickle's compass come;<br>Love alters not with his brief hours and weeks,<br>But bears it out even to the edge of doom:<br>If this be error and upon me proved,<br>I never writ, nor no man ever loved.</td>
-    <td>Let me not to the marriage of true minds<br>Admit impediments. Love is not love<br>Which alters when it alteration finds,<br>Or bends with the remover to remove:<br>O, no! it is an ever-fix`ed mark,<br>That looks on tempests and is never shaken;</td>
+    <td>Let ## not to the marriage ## true minds<br>Admit impediments. Love is not love<br>Which alters when it alteration finds,<br>Or bends with the remover to remove:<br>O, no! it is an ever-fix`ed mark,<br>That looks on tempests and is never shaken;</td>
   </tr>
   <tr>
-    <td>It is the star to every wand'ring bark,<br>Whose worth's unknown, although his heighth be taken.<br>Love's not Time's fool, though rosy lips and cheeks</td>
+    <td>It is the #### to every wand'ring bark,<br>Whose worth's unknown, although his heighth be taken.<br>Love's not Time's ####, though rosy lips and cheeks</td>
   </tr>
   <tr>
-    <td>Within his bending sickle's compass come;<br>Love alters not with his brief hours and weeks,<br>But bears it out even to the edge of doom:<br>If this be error and upon me proved,<br>I never writ, nor no man ever loved.</td>
+    <td>Within his bending sickle's compass ####;<br>Love alters not with his brief hours and weeks,<br>But bears it out even to the #### of doom:<br>If this ## error and upon me proved,<br>I never writ, nor no man ever loved.</td>
   </tr>
 </table>
 
