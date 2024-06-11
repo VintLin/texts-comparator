@@ -6,8 +6,8 @@ class CharInfo:
     STATE_SAME = 1
     
     colors = {
-        STATE_SAME: (0, 255, 0),  # 绿色
-        STATE_DIFF: (0, 0, 255)  # 红色 完全不同
+        STATE_SAME: (0, 255, 0),  # Green: Just the same
+        STATE_DIFF: (0, 0, 255)  # Red: Totally different
     }
     def __init__(self, lines) -> None:
         self.lines = lines

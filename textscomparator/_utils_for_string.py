@@ -40,14 +40,11 @@ class StringUtils:
         
     @staticmethod
     def find_matches(a_text, b_texts):
-        # 计算相似度并找到最佳匹配
         matches = []
         for b_index, b_text in enumerate(b_texts):
             ratio = StringUtils.similarity_ratio(a_text, b_text, use_contains=True)
-            # 添加完整的匹配信息
             matches.append([b_index, b_text, ratio])
         
-        # 按照相似度（ratio）排序
         sorted_matches = sorted(matches, key=lambda x: x[2], reverse=True)
         
         return sorted_matches
@@ -71,15 +68,12 @@ class StringUtils:
         texts = sorted(texts, key=lambda x: len(x[1]), reverse=True)
         return texts
     
-    # ----
-    
     @staticmethod
     def unchanged_indices(a, b):
         diffs = StringUtils.diff_list(a, b)
         unchanged_a = []
         unchanged_b = []
 
-        # 遍历差异，找到相等的部分
         for diff in diffs:
             tag, i1, i2, j1, j2 = diff
             if tag == 'equal':
@@ -105,26 +99,20 @@ class StringUtils:
     
     @staticmethod
     def filter_consecutive(indices, min_length=2, is_span=False):
-        # 存放结果的列表
         result_indices = []
         current_sequence = []
 
         for i, index in enumerate(indices):
-            # 如果当前序列为空，开始一个新的序列
             if not current_sequence:
                 current_sequence.append(i)
             else:
-                # 检查当前索引是否连续
                 if index == indices[current_sequence[-1]] + 1 or (is_span and index == indices[current_sequence[-1]] + 2):
                     current_sequence.append(i)
                 else:
-                    # 检查是否符合最小长度要求，符合则加入结果
                     if len(current_sequence) >= min_length:
                         result_indices.extend(current_sequence)
-                    # 开始一个新的序列
                     current_sequence = [i]
 
-        # 最后一组序列
         if len(current_sequence) >= min_length:
             result_indices.extend(current_sequence)
 
@@ -139,16 +127,15 @@ class StringUtils:
         ratio = difflib.SequenceMatcher(None, a, b).ratio()
         if use_contains and ratio < 0.1 and StringUtils.contains_four_consecutive(a, b):
             return 0.1
-        # 检查两个字符串中是否包含连续的四个字符
         else:
             return ratio
     
     @staticmethod
     def contains_four_consecutive(a, b):
         """
-        检查两个字符串是否包含连续四个相连字符。
+        Checks whether two strings contain four consecutive contiguous characters.
         """
-        for i in range(len(a) - 3):  # -3 是因为要至少有4个连续字符
+        for i in range(len(a) - 3):  # -3 is because there must be at least four consecutive characters
             sub_a = a[i:i+4]
             if sub_a in b:
                 return True
@@ -156,17 +143,15 @@ class StringUtils:
     
     @staticmethod
     def remove_punctuation(text):
-        # 定义中文标点符号
+        # Chinese punctuation marks
         chinese_punctuation = " 。？！，、；：“”‘’（）《》【】——…"
-        # 合并英文和中文标点符号
         all_punctuation = string.punctuation + chinese_punctuation
-        # 创建转换表
         translator = str.maketrans('', '', all_punctuation)
         return text.translate(translator)
     
     @staticmethod
     def diff_list(a, b):
-        # 使用 difflib 获取两个字符串之间的差异
+        # Use difflib to get the difference between two strings
         s = difflib.SequenceMatcher(None, a, b)
         diffs = []
         for tag, i1, i2, j1, j2 in s.get_opcodes():
