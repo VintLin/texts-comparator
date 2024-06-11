@@ -26,7 +26,7 @@
 `Excel` として出力：
 
 <p align="center">
-  <img src='../images/example_1.jpg' width=600>
+  <img src='../images/example_1.jpg'>
 </p>
 
 `JSON` として出力：
@@ -77,7 +77,7 @@
 `Excel` として出力：
 
 <p align="center">
-  <img src='../images/example_2.jpg' width=600>
+  <img src='../images/example_2.jpg'>
 </p>
 
 `JSON` として出力：

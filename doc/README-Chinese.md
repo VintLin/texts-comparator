@@ -25,7 +25,7 @@
 以 `Excel` 输出：
 
 <p align="center">
-  <img src='../images/example_1.jpg' width=600>
+  <img src='../images/example_1.jpg'>
 </p>
 
 以 `JSON` 输出：
@@ -76,7 +76,7 @@
 以 `Excel` 输出：
 
 <p align="center">
-  <img src='../images/example_2.jpg' width=600>
+  <img src='../images/example_2.jpg'>
 </p>
 
 以 `JSON` 输出：

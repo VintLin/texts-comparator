@@ -25,7 +25,7 @@ This tool is used for text comparison. It allows you to quickly identify the dif
 Output as `Excel`:
 
 <p align="center">
-  <img src='../images/example_1.jpg' width=600>
+  <img src='../images/example_1.jpg'>
 </p>
 
 Output as `JSON`:
@@ -76,7 +76,7 @@ Output as `JSON`:
 Output as `Excel`:
 
 <p align="center">
-  <img src='../images/example_2.jpg' width=600>
+  <img src='../images/example_2.jpg'>
 </p>
 
 Output as `JSON`:
