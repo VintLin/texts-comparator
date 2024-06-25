@@ -3,6 +3,7 @@ import logging
 import os
 
 from textscomparator.texts_comparator import compare_texts
+from textscomparator._utils_for_file import FileUtils
 
 def _parser(parser):
     parser.add_argument('file1', type=str)
@@ -16,7 +17,10 @@ def _execute(args):
     output_folder = args.output_folder
     cache_path = args.cache
     _init_cache_file(cache_path)
-    compare_texts(file1, file2, output_folder)
+    items1 = FileUtils.read_from_text(file1)
+    items2 = FileUtils.read_from_text(file2)
+    
+    compare_texts(items1, items2, output_folder)
 
 def _init_cache_file(cache_path: str):
     if not cache_path:

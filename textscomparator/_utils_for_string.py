@@ -157,3 +157,8 @@ class StringUtils:
         for tag, i1, i2, j1, j2 in s.get_opcodes():
             diffs.append((tag, i1, i2, j1, j2))
         return diffs
+
+    @staticmethod
+    def is_pinyin(input_string):
+        pinyin_chars = set("ɑɡɪʊ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZāēīōūǖĀĒĪŌŪǕáéíóúǘÁÉÍÓÚǗàèìòùǜÀÈÌÒÙǛǎěǐǒǔǚǍĚǏǑǓǙüÜ\xa0")
+        return all(char in pinyin_chars for char in input_string)

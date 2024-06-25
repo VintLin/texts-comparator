@@ -1,6 +1,3 @@
-
-
-
 class CharInfo:
     STATE_DIFF = -1
     STATE_SAME = 1

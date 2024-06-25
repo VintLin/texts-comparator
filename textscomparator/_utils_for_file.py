@@ -1,5 +1,7 @@
 import os
 import json
+import openpyxl
+
 from datetime import datetime
 
 from openpyxl import Workbook, load_workbook
@@ -9,6 +11,27 @@ from openpyxl.cell.text import InlineFont
 from openpyxl.cell.rich_text import TextBlock, CellRichText
 
 class FileUtils:
+    
+    @staticmethod
+    def read_from_excel(filename):
+        workbook = openpyxl.load_workbook(filename)
+        items = []
+        
+        worksheet = workbook.active
+        
+        for row in list(worksheet.iter_rows(values_only=True)):
+            text = row[0]
+            if text is not None and len(str(text).strip()) > 0:
+                items.append(text)
+
+        workbook.close()
+    
+    @staticmethod
+    def read_from_text(filename):
+        with open(filename, 'r', encoding='utf-8') as file:
+            lines = file.readlines()
+            lines = [line.strip() for line in lines]
+        return lines
     
     @staticmethod
     def save_to_json(data, file_path):
@@ -87,9 +110,8 @@ class FileUtils:
                 
                 current_row += right_count
             
-            # 保存Excel文件
             workbook.save(excel_path)
-            # 关闭 Excel 文件
+            
             workbook.close()
             return True
         except:        
@@ -97,43 +119,33 @@ class FileUtils:
     
     @staticmethod
     def _set_sheet_value(value, row_index: int, column_index: int, sheet, bold=False, width=60, height=60, color="000000", background="ffffff", align_horizontal='left'):
-        # 创建一个字体样式，字体为微软雅黑，大小为11
         font = Font(name='微软雅黑', size=11, bold=bold, color=color)
         alignment = Alignment(horizontal=align_horizontal, vertical='center', wrap_text=True)
         cell = sheet.cell(row=row_index, column=column_index, value=value)
-        # 创建一个填充模式，设置背景色为蓝色
         fill = PatternFill(fill_type="solid", fgColor=background)
-        # 创建边框样式
         border = Border(left=Side(border_style="thin"), 
                         right=Side(border_style="thin"), 
                         top=Side(border_style="thin"), 
                         bottom=Side(border_style="thin"))
-        # 设置单元格的字体样式
         cell.font = font
         cell.alignment = alignment
         cell.fill = fill
         cell.border = border
-        # 设置单元格的高度和宽度
         sheet.row_dimensions[row_index].height = height
         sheet.column_dimensions[sheet.cell(row=row_index, column=column_index).column_letter].width = width
 
     @staticmethod
     def _set_sheet_rich_value(value: CellRichText, row_index: int, column_index: int, sheet, background="ffffff"):
-        # 创建一个字体样式，字体为微软雅黑，大小为11
         alignment = Alignment(horizontal='left', vertical='center', wrap_text=True)
         cell = sheet.cell(row=row_index, column=column_index, value=value)
-        # 创建一个填充模式，设置背景色为蓝色
         fill = PatternFill(fill_type="solid", fgColor=background)
-        # 创建边框样式
         border = Border(left=Side(border_style="thin"), 
                         right=Side(border_style="thin"), 
                         top=Side(border_style="thin"), 
                         bottom=Side(border_style="thin"))
-        # 设置单元格的字体样式
         cell.alignment = alignment
         cell.fill = fill
         cell.border = border
-        # 设置单元格的高度和宽度
         sheet.row_dimensions[row_index].height = 100
         sheet.column_dimensions[sheet.cell(row=row_index, column=column_index).column_letter].width = 60
     
@@ -143,20 +155,17 @@ class FileUtils:
         black_font = InlineFont(color="000000", sz=12)
         grey_font = InlineFont(color="888888", sz=12, b=True)
         
-        sorted_indices = sorted(set(red_marks))  # 确保索引唯一且按升序排列
+        sorted_indices = sorted(set(red_marks))
         rich_string = []
         last_pos = 0
         for index in sorted_indices:
-            if index >= len(text):  # 确保索引有效
+            if index >= len(text):
                 continue
-            # 添加红色之前的黑色文本
             if index > last_pos:
                 rich_string.append(TextBlock(black_font, text[last_pos:index]))
-            # 添加红色文本
             rich_string.append(TextBlock(red_font, text[index]))
             last_pos = index + 1
 
-        # 添加最后一部分黑色文本
         if last_pos < len(text):
             rich_string.append(TextBlock(black_font, text[last_pos:]))
         if tag:
